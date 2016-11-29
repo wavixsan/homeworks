@@ -1,5 +1,5 @@
 <?php
-$arr = array('green'=>'çåëåíûé', 'red'=>'êðàñíûé','blue'=>'ãîëóáîé');
+$arr = array('green'=>'Ð·ÐµÐ»ÐµÐ½Ñ‹Ð¹', 'red'=>'ÐºÑ€Ð°ÑÐ½Ñ‹Ð¹','blue'=>'Ð³Ð¾Ð»ÑƒÐ±Ð¾Ð¹');
 foreach($arr as $k=>$v){
     echo "$k<br>";
 }
