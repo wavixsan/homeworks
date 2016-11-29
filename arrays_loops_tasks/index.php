@@ -3,7 +3,14 @@ if(!empty($_GET['open'])){
 	$file=file($_GET['open']);
 	$text="";
 	foreach ($file as $v){
-		$text.=$v;
+		for($i=0;$i<strlen($v);$i++){
+			switch (substr($v,$i,1)){
+				case "<": $text.="&lt;"; break;
+				case ">": $text.="&gt;"; break;
+				case '"': $text.="&quot;"; break;
+				default: $text.=substr($v,$i,1);
+			}
+		}
 	}
 	echo $text;
 	exit;
@@ -34,6 +41,8 @@ if(!empty($_GET['go'])){
 .key{color:blue;cursor:pointer;border:solid blue 1px;padding:2px 4px; display:inline-block; margin:2px;}
 .key:hover{background:#ffa;}
 #xmlhr{padding:5px;background:#ddd;}
+#xmlhr2{padding:5px;background:#ddf;}
+#xmlhr3{background:#fdd; padding:5px;}
 textarea{min-width:90%;min-height:200px;}
 </style>
 </head>
@@ -50,7 +59,7 @@ textarea{min-width:90%;min-height:200px;}
 	<h3>Задание:</h3>
 	<div id="xmlhr2"></div>
 	<h3>Работа:</h3>
-	<?php echo '<textarea id="xmlhr3"></textarea>'; ?>
+	<pre id="xmlhr3"></pre>
 	  <h3>Результат:</h3>
    <div id="xmlhr"></div>
 <script>
@@ -77,4 +86,4 @@ function xmlhr(n,id){
 </script>
 </body>
 </html>
-<!-- index --->
+<!-- index -->
