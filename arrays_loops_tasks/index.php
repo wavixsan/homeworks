@@ -50,7 +50,7 @@ textarea{min-width:90%;min-height:200px;}
 	<h3>Задание:</h3>
 	<div id="xmlhr2"></div>
 	<h3>Работа:</h3>
-	<textarea id="xmlhr3"></textarea>
+	<?php echo '<textarea id="xmlhr3"></textarea>'; ?>
 	  <h3>Результат:</h3>
    <div id="xmlhr"></div>
 <script>
@@ -70,10 +70,11 @@ function xmlhr(n,id){
 	  if(xmlhttp.readyState==4 && xmlhttp.status==200){
 			document.getElementById(id).innerHTML=xmlhttp.responseText;
 	  }
-	}
+	};
 	xmlhttp.open("GET",n,true);
 	xmlhttp.send(null);
 }
 </script>
 </body>
 </html>
+<!-- index --->
