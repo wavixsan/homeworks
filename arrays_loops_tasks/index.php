@@ -18,7 +18,7 @@ if(!empty($_GET['open'])){
 	exit;
 }
 if(!empty($_GET['go'])){
-	$_SESSION["go"]=$_GET['go'];//test .gitignore
+	$_SESSION["go"]=$_GET['go'];//test .gitignore test2
 	$m=explode('.',$_GET['go']);
 	$file=file('home.php');
 	$echo=false;
