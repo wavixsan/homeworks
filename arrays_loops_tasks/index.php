@@ -31,9 +31,9 @@ if(!empty($_GET['go'])){
     <title>arrays_loops_tasks</title>
     <meta charset="utf-8">
 <style>
-.key{color:blue;cursor:pointer;border:solid blue 1px;padding:2px 4px;}
+.key{color:blue;cursor:pointer;border:solid blue 1px;padding:2px 4px; display:inline-block; margin:2px;}
 .key:hover{background:#ffa;}
-#xmlhr{padding:5px;}
+#xmlhr{padding:5px;background:#ddd;}
 textarea{min-width:90%;min-height:200px;}
 </style>
 </head>
@@ -41,18 +41,18 @@ textarea{min-width:90%;min-height:200px;}
 	<?php
 	$dir=scandir(".");
 	foreach($dir as $v){
-		if(is_file($v) and $v!="index.php" and $v!="home.php"){
-			 echo "<a class='key' onclick=keyXML('$v')>$v</a> ";
+		if(is_file($v) and (int)$v!=0){
+			echo "<a class='key' onclick=keyXML('$v')>$v</a>";
 		}
 	}
 
 	?>
 	<h3>Задание:</h3>
 	<div id="xmlhr2"></div>
-   <h3>Результат:</h3>
-   <div id="xmlhr"></div>
-	<h3>Рабора:</h3>
+	<h3>Работа:</h3>
 	<textarea id="xmlhr3"></textarea>
+	  <h3>Результат:</h3>
+   <div id="xmlhr"></div>
 <script>
 function keyXML(n){
 	xmlhr(n,'xmlhr');
