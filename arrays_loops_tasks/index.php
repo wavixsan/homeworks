@@ -42,6 +42,7 @@ if(!empty($_GET['go'])){
 .key:hover{background:#ffa;}
 #xmlhr{padding:5px;background:#ddd;}
 #xmlhr2{padding:5px;background:#ddf;}
+#xmlhr2 p{padding:0;margin:0;}
 #xmlhr3{background:#fdd; padding:5px;}
 textarea{min-width:90%;min-height:200px;}
 </style>
