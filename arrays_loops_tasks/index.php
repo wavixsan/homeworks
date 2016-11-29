@@ -43,7 +43,7 @@ if(!empty($_GET['go'])){
 <style>
 .key{color:blue;cursor:pointer;border:solid blue 1px;padding:2px 4px; display:inline-block; margin:2px;}
 .key:hover{background:#ffa;}
-#xmlhr{padding:5px;background:#ddd;}
+#xmlhr{padding:5px;background:#dfd;}
 #xmlhr2{padding:5px;background:#ddf;}
 #xmlhr2 p{padding:0;margin:0;}
 #xmlhr3{background:#fdd; padding:5px;}
