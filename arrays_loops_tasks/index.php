@@ -1,4 +1,6 @@
 <?php
+session_start();
+if(!empty($_SESSION['go'])){$go=$_SESSION['go'];}
 if(!empty($_GET['open'])){
 	$file=file($_GET['open']);
 	$text="";
@@ -16,6 +18,7 @@ if(!empty($_GET['open'])){
 	exit;
 }
 if(!empty($_GET['go'])){
+	$_SESSION["go"]=$_GET['go'];
 	$m=explode('.',$_GET['go']);
 	$file=file('home.php');
 	$echo=false;
@@ -85,6 +88,9 @@ function xmlhr(n,id){
 	xmlhttp.send(null);
 }
 </script>
+<?php
+	if(!empty($go)){echo "<script>keyXML('$go');</script>";}
+?>
 </body>
 </html>
 <!-- index -->
