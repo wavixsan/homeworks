@@ -60,6 +60,7 @@ textarea{min-width:90%;min-height:200px;}
 	}
 
 	?>
+	<a class="key" href="home.php">Home</a>
 	<h3>Задание:</h3>
 	<div id="xmlhr2"></div>
 	<h3>Работа:</h3>
