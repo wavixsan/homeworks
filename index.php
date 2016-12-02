@@ -158,12 +158,7 @@ foreach($folder as $val){
 if(!empty($_SESSION['work'])){
     echo "<script>key('work','{$_SESSION['work']}')</script>";
     if(!empty($go)){
-        echo "
-<script>
-    function aaa(){keyXML('{$_SESSION['work']}','$go');}
-    setTimeout(aaa,1000);
-</script>
-        ";
+        echo "<script>keyXML('$go');</script>";
     }
 }
 ?>
