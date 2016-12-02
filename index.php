@@ -1,5 +1,11 @@
 <?php
 session_start();
+if(count($_POST)!=0){$_SESSION['post']=$_POST;}
+if(!empty($_GET['view']) and !empty($_SESSION['work'])){
+    $file=$_SESSION['work']."/".$_GET['view'];
+    if(file_exists($file)){include($file);}
+    exit;
+}
 if(!empty($_GET['homework'])){
     $file=$_GET['homework'].'/homework.php';
     if(file_exists($file)){include($file);}
@@ -57,7 +63,7 @@ if(!empty($_GET['work'])){
     $dir=scandir($_GET['work']);
     foreach($dir as $v){
         if(is_file($_GET['work'].'/'.$v) and (int)$v!=0){
-            echo "<a class='key' onclick=keyXML('{$_GET['work']}','$v')>$v</a>";
+            echo "<a class='key' onclick=keyXML('$v')>$v</a>";
         }
     }
     echo "<a class='key' style='color:#f00;' onclick=key('key','home')>Home</a>";
@@ -127,10 +133,10 @@ foreach($folder as $val){
     function key(g,n){
         xmlhr('?'+g+'='+n,'content');
     }
-    function keyXML(g,n){
+    function keyXML(n){
         xmlhr("?go="+n,'xmlhr2');
         xmlhr("?open="+n,'xmlhr3');
-        xmlhr(g+'/'+n,'xmlhr');
+        xmlhr('?view='+ n,'xmlhr');
     }
     function xmlhr(n,id){
         var xmlhttp;
