@@ -2,6 +2,7 @@
 session_start();
 if(count($_POST)!=0){$_SESSION['post']=$_POST;}
 if(!empty($_GET['view']) and !empty($_SESSION['work'])){
+    if(!empty($_SESSION['post'])){$_POST=$_SESSION['post'];}
     $file=$_SESSION['work']."/".$_GET['view'];
     if(file_exists($file)){include($file);}
     exit;
