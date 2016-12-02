@@ -2,26 +2,26 @@
 function getCommonWords($a,$b){
     $arrA=explode(' ',$a);
     $arrB=explode(' ',$b);
-    //var_dump(array_diff_ukey($arrA,$arrB));
+    $arr=array();
+    foreach($arrA as $v){
+        if(in_array($v,$arrB)){$arr[]=$v;}
+    }
+    echo "<b>Результат: </b>";
+    if(count($arr)!=0){
+        foreach($arr as $v){echo "$v, ";}
+    }else{echo 'null';}
 }
+$a=''; $b='';
 if(!empty($_POST['textA']) and !empty($_POST['textB'])){
-    getCommonWords($_POST['textA'],$POST['textB']);
-    echo 'ok';
+    $a=$_POST['textA'];
+    $b=$_POST['textB'];
+    getCommonWords(trim($_POST['textA']),trim($_POST['textB']));
+    echo "<hr>";
 }
-var_dump($_POST);
 ?>
-<!doctype html>
-<html>
-<head>
-    <title>Задание 1</title>
-</head>
-<body>
-
-<form method="post">
-    <textarea name="textA">Вычисляет расхождение </textarea>
-    <textarea name="textB">Вычисляет расхождение </textarea>
+<form method="POST">
+    <textarea name="textA" rows="7" cols="50"><?php echo $a; ?></textarea>
+    <textarea name="textB" rows="7" cols="50"><?php echo $b; ?></textarea>
     <input type="submit" value="Проверить">
 </form>
 
-</body>
-</html>
