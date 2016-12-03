@@ -1,5 +1,5 @@
 <?php
-function scan_dir($dir='.'){
+function scan_dir($dir='./'){
     echo "<b>$dir :</b>";
     $cont=scandir($dir);
     foreach($cont as $v){
