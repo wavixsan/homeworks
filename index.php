@@ -7,11 +7,7 @@ if(!empty($_GET['view']) and !empty($_SESSION['work'])){
     if(file_exists($file)){include($file);}
     exit;
 }
-if(!empty($_GET['homework'])){
-    $file=$_GET['homework'].'/homework.php';
-    if(file_exists($file)){include($file);}
-    exit;//not commit
-}
+
 if(!empty($_GET['key'])){
     switch($_GET['key']){
         case 'home':
@@ -63,12 +59,12 @@ if(!empty($_GET['work'])){
     $_SESSION['work']=$_GET['work'];
     $dir=scandir($_GET['work']);
     foreach($dir as $v){
-        if(is_file($_GET['work'].'/'.$v) and (int)$v!=0){
+        if(is_file($_GET['work'].'/'.$v) and (int)$v!=0) {
             echo "<a class='key' onclick=keyXML('$v')>$v</a>";
         }
     }
     echo "<a class='key' style='color:#f00;' onclick=key('key','home')>Home</a>";
-    echo "<a class='key' style='color:#f00;' href='?homework={$_GET['work']}'>homework</a>";
+    echo "<a class='key' style='color:#f00;' target='_blank' href='{$_GET['work']}/homework.php'>homework</a>";
     echo <<<NEC
 <style>
     #xmlhr{padding:5px;background:#dfd;}
