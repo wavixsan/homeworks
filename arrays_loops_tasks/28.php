@@ -1,7 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: admin
- * Date: 30.11.2016
- * Time: 18:31
- */
+echo "<table>";
+for($i=1;$i<=10;$i++){
+    echo "<tr>";
+    for($j=1;$j<=10;$j++){
+        echo "<td>".$j*$i."</td>";
+    }
+    echo "</tr>";
+}
+echo "</table>";
