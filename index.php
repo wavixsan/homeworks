@@ -1,9 +1,9 @@
 <?php
 session_start();
 if(count($_POST)!=0){$_SESSION['post']=$_POST;}
-if(!empty($_GET['view']) and !empty($_SESSION['work'])){
+if(!empty($_GET['view'])){
     if(!empty($_SESSION['post'])){$_POST=$_SESSION['post'];}
-    $file=$_SESSION['work']."/".$_GET['view'];
+    $file=$_GET['view'];
     if(file_exists($file)){include($file);}
     exit;
 }
@@ -17,13 +17,13 @@ if(!empty($_GET['key'])){
     }
 }
 if(!empty($_SESSION['go']) and !empty($_SESSION['work'])){
-    if(file_exists($_SESSION['work'].'/'.$_SESSION['go'])){
+    if(file_exists($_SESSION['work'].'/'.$_SESSION['go'].'.php')){
         $go=$_SESSION['go'];
     }
 
 }
-if(!empty($_GET['open']) and !empty($_SESSION['work'])){
-    $file=file($_SESSION['work'].'/'.$_GET['open']);
+if(!empty($_GET['open'])){
+    $file=file($_GET['open']);
     $text="";
     foreach ($file as $v){
         for($i=0;$i<strlen($v);$i++){
@@ -40,11 +40,11 @@ if(!empty($_GET['open']) and !empty($_SESSION['work'])){
 }
 if(!empty($_GET['go']) and !empty($_SESSION['work'])){
     $_SESSION["go"]=$_GET['go'];
-    $m=explode('.',$_GET['go']);
+    $m=$_GET['go'];
     $file=file($_SESSION['work'].'/homework.php');
     $echo=false;
     foreach($file as $v){
-        if(substr($v,0,3)=="<p>" and substr($v,3,strlen($m[0]))==$m[0]){$echo=true;}
+        if(substr($v,0,3)=="<p>" and substr($v,3,strlen($m))==$m){$echo=true;}
         if($echo==true){
             echo $v;
             for($i=0;$i<strlen($v);$i++){
@@ -58,9 +58,16 @@ if(!empty($_GET['go']) and !empty($_SESSION['work'])){
 if(!empty($_GET['work'])){
     $_SESSION['work']=$_GET['work'];
     $dir=scandir($_GET['work']);
+    natsort($dir);
     foreach($dir as $v){
-        if(is_file($_GET['work'].'/'.$v) and (int)$v!=0) {
-            echo "<a class='key' onclick=keyXML('$v')>$v</a>";
+        $n=explode('.',$v); $n=$n[0];
+        $v=$_GET['work'].'/'.$v;
+        if(is_file($v) and (int)$n!=0){
+            echo "<a class='key' onclick=keyXML('$v','$n')>$n</a>";
+        }
+        if(is_dir($v) and (int)$n!=0 and file_exists($v.'/index.php')){
+            $v=$v.'/index.php';
+            echo "<a class='key' onclick=keyXML('$v','$n')>$n</a>";
         }
     }
     echo "<a class='key' style='color:#f00;' onclick=key('key','home')>Home</a>";
@@ -130,10 +137,10 @@ foreach($folder as $val){
     function key(g,n){
         xmlhr('?'+g+'='+n,'content');
     }
-    function keyXML(n){
+    function keyXML(s,n){
         xmlhr("?go="+n,'xmlhr2');
-        xmlhr("?open="+n,'xmlhr3');
-        xmlhr('?view='+ n,'xmlhr');
+        xmlhr("?open="+s,'xmlhr3');
+        xmlhr('?view='+ s,'xmlhr');
     }
     function xmlhr(n,id){
         var xmlhttp;
@@ -155,10 +162,10 @@ foreach($folder as $val){
 if(!empty($_SESSION['work'])){
     echo "<script>key('work','{$_SESSION['work']}')</script>";
     if(!empty($go)){
-        echo "<script>setTimeout(function() { keyXML('$go'); }, 1000);</script>";
+        $s=$_SESSION['work'].'/'.$go.'.php';
+        echo "<script>setTimeout(function() { keyXML('$s','$go'); }, 1000);</script>";
     }
 }
 ?>
 </body>
 </html>
-
